@@ -10,7 +10,6 @@ app.use(express.json());
 app.use(cors())
 
 //Sample in-memory storage for todo items
-//let todos = []
 
 //Connect the mongodb
 mongoose
@@ -37,22 +36,10 @@ const todoSchema = new mongoose.Schema({
 //Creating model
 const todomodel = mongoose.model("todo", todoSchema);
 
-//Sample demo
-// app.get('/', (req, res) => {
-//     res.send("hello world")
-// })
 
 //Create a new todo item
 app.post("/todos", async (req, res) => {
   const { title, description } = req.body;
-  // const newTodo = {
-  //     id: todos.length+1,
-  //     title,
-  //     description
-  // }
-  // todos.push(newTodo)
-  // console.log(todos)
-
   try {
     const newTodo = new todomodel({ title, description });
     await newTodo.save();
